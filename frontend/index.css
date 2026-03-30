@@ -1,0 +1,850 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #0f0f1a;
+    color: #f0f0f0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(28, 15, 58, 0.6) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(58, 15, 45, 0.6) 0%, transparent 20%);
+}
+
+/* Navigation Bar */
+.navbar {
+    background-color: rgba(20, 20, 35, 0.95);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px solid #2a2a3e;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-container {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #ff6b8b;
+    gap: 0.5rem;
+}
+
+.logo i {
+    font-size: 2.2rem;
+    color: #6c5ce7;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav-link {
+    color: #b0b0d0;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.nav-link:hover, .nav-link.active {
+    background-color: #2a2a3e;
+    color: #fff;
+}
+
+.nav-link.active {
+    color: #6c5ce7;
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    background-color: #1a1a2e;
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    border: 1px solid #3a3a5e;
+}
+
+.search-box input {
+    background: transparent;
+    border: none;
+    color: #f0f0f0;
+    margin-left: 0.5rem;
+    outline: none;
+    width: 200px;
+}
+
+.search-box i {
+    color: #6c5ce7;
+}
+
+/* Main Content */
+.main-content {
+    flex: 1;
+    padding: 3rem 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content-container {
+    width: 100%;
+    max-width: 1000px;
+    text-align: center;
+}
+
+.main-title {
+    font-size: 2.8rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(90deg, #ff6b8b, #6c5ce7);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    line-height: 1.2;
+}
+
+.main-title i {
+    color: #ffd166;
+    margin-right: 0.5rem;
+}
+
+.subtitle {
+    color: #b0b0d0;
+    font-size: 1.1rem;
+    margin-bottom: 3rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+}
+
+/* Anime Card */
+.anime-card {
+    background: rgba(30, 30, 50, 0.7);
+    border-radius: 15px;
+    padding: 2rem;
+    margin-bottom: 2.5rem;
+    display: flex;
+    gap: 2rem;
+    text-align: left;
+    border: 1px solid #3a3a5e;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(5px);
+}
+
+.anime-poster {
+    flex: 0 0 250px;
+    position: relative;
+    border-radius: 12px;
+}
+
+/* Image container */
+.poster-placeholder {
+    background: linear-gradient(135deg, #2a2a4e, #1a1a3e);
+    height: 350px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #6c5ce7;
+    border: 2px dashed #4a4a7a;
+    margin-bottom: 1rem;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+}
+
+/* Image styling */
+.poster-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    position: relative;
+    z-index: 2;
+    transition: transform 0.3s ease;
+}
+
+/* Glow effect on image hover */
+.anime-poster:hover .poster-placeholder img {
+    transform: scale(1.02);
+}
+
+/* Glowing border effect around the image */
+.anime-poster:hover .poster-placeholder {
+    border: 2px solid transparent;
+    background: linear-gradient(135deg, #2a2a4e, #1a1a3e);
+    position: relative;
+}
+
+.anime-poster:hover .poster-placeholder::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    background: linear-gradient(90deg, #ff2288, #387ef0, #ff2288);
+    background-size: 200% 200%;
+    border-radius: 12px;
+    z-index: 0;
+    animation: rotateGlow 2s linear infinite;
+    pointer-events: none;
+}
+
+/* Alternative: If you want the glow to be behind the image (subtle glow effect) */
+/* Uncomment below for a softer glow behind the image */
+
+.anime-poster:hover .poster-placeholder::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle, rgba(255,34,136,0.3), rgba(56,126,240,0.3));
+    border-radius: 10px;
+    z-index: 1;
+    pointer-events: none;
+    animation: pulseGlow 1.5s ease-in-out infinite;
+}
+
+
+/* Animation for moving gradient */
+@keyframes rotateGlow {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Optional: Pulse animation for softer glow */
+@keyframes pulseGlow {
+    0%, 100% {
+        opacity: 0.5;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+/* If you want the glow to be on the image itself (like a border around the image) */
+/* Alternative glow effect directly on image */
+
+.poster-placeholder img {
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.anime-poster:hover .poster-placeholder img {
+    box-shadow: 0 0 20px rgba(255, 34, 136, 0.6), 0 0 40px rgba(56, 126, 240, 0.4);
+    transform: scale(1.02);
+}
+
+
+.poster-placeholder i {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+}
+
+.anime-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.tag {
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.tag.shonen.genre0 {
+    background-color: rgba(255, 107, 107, 0.2);
+    color: #ff6b6b;
+}
+
+.tag.shonen.genre1 {
+    background-color: rgba(108, 92, 231, 0.2);
+    color: #6c5ce7;
+}
+
+.tag.shonen.genre2 {
+    background-color: rgba(57, 49, 120, 0.2);
+    color: #276927;
+}
+.tag.shonen.genre3 {
+    background-color: rgba(57, 49, 120, 0.2);
+    color: #c9393e;
+}
+
+.tag.rating {
+    background-color: rgba(255, 209, 102, 0.2);
+    color: #ffd166;
+}
+
+.anime-info {
+    flex: 1;
+}
+
+.anime-title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #fff;
+}
+
+.anime-meta {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: #b0b0d0;
+}
+
+.anime-meta i {
+    color: #6c5ce7;
+    margin-right: 0.3rem;
+}
+
+.anime-description {
+    color: #d0d0e7;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+}
+
+.anime-stats {
+    display: flex;
+    gap: 2rem;
+    margin-top: 1.5rem;
+}
+
+.stat {
+    background-color: rgba(42, 42, 62, 0.8);
+    padding: 1rem;
+    border-radius: 10px;
+    flex: 1;
+    text-align: center;
+    border: 1px solid #3a3a5e;
+}
+
+.stat-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #6c5ce7;
+}
+
+.stat-label {
+    color: #b0b0d0;
+    font-size: 0.9rem;
+    margin-top: 0.3rem;
+}
+
+/* Generate Button */
+.button-container {
+    margin-bottom: 3rem;
+}
+
+.generate-btn {
+    background: linear-gradient(90deg, #ff6b8b, #6c5ce7);
+    color: white;
+    border: none;
+    padding: 1.2rem 3rem;
+    font-size: 1.3rem;
+    font-weight: 700;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(108, 92, 231, 0.4);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    text-decoration: none;
+}
+
+.generate-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(108, 92, 231, 0.6);
+}
+
+.button-hint {
+    color: #b0b0d0;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+}
+
+.button-hint i {
+    color: #ffd166;
+    margin-right: 0.3rem;
+}
+
+/* History Section */
+.history-section {
+    background-color: rgba(26, 26, 46, 0.7);
+    border-radius: 15px;
+    padding: 1.5rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    border: 1px solid #3a3a5e;
+}
+
+.history-section h3 {
+    text-align: left;
+    margin-bottom: 1rem;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.history-section h3 i {
+    color: #6c5ce7;
+}
+
+.history-list {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    padding: 0.5rem;
+}
+
+.history-item {
+    background-color: rgba(42, 42, 62, 0.8);
+    padding: 0.8rem 1.2rem;
+    border-radius: 10px;
+    white-space: nowrap;
+    border: 1px solid #3a3a5e;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.history-item:hover {
+    background-color: rgba(108, 92, 231, 0.2);
+    border-color: #6c5ce7;
+}
+
+/* Recommendation Section */
+.recommendation-section {
+    margin-top: 2rem;
+    padding: 1.5rem;
+}
+
+.recommendation-section h3 {
+    text-align: left;
+    margin-bottom: 1.5rem;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.recommendation-section h3 i {
+    color: #6c5ce7;
+}
+
+.recommendation-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.rec-card {
+    background-color: rgba(42, 42, 62, 0.8);
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #3a3a5e;
+    transition: all 0.3s ease;
+}
+
+.rec-card:hover {
+    transform: translateY(-5px);
+    border-color: #6c5ce7;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.rec-poster {
+    height: 150px;
+    background: linear-gradient(135deg, #3a3a6e, #2a2a5e);
+}
+
+.rec-info {
+    padding: 1rem;
+    text-align: left;
+}
+
+.rec-info h4 {
+    color: #fff;
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.rec-info p {
+    color: #b0b0d0;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.rec-rating {
+    color: #ffd166;
+    font-weight: 600;
+}
+
+/* Footer */
+.footer {
+    background-color: rgba(20, 20, 35, 0.95);
+    padding: 3rem 2rem 1.5rem;
+    border-top: 1px solid #2a2a3e;
+    margin-top: auto;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.footer-section h4 {
+    color: #fff;
+    margin-bottom: 1.2rem;
+    font-size: 1.2rem;
+}
+
+.footer-section p {
+    color: #b0b0d0;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.footer-section ul {
+    list-style: none;
+}
+
+.footer-section ul li {
+    margin-bottom: 0.7rem;
+}
+
+.footer-section ul li a {
+    color: #b0b0d0;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-section ul li a:hover {
+    color: #6c5ce7;
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.social-links a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: #2a2a3e;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 1.2rem;
+    transition: all 0.3s;
+}
+
+.social-links a:hover {
+    background-color: #6c5ce7;
+    transform: translateY(-3px);
+}
+
+.newsletter {
+    display: flex;
+    margin-top: 1rem;
+}
+
+.newsletter input {
+    flex: 1;
+    padding: 0.8rem;
+    background-color: #1a1a2e;
+    border: 1px solid #3a3a5e;
+    border-radius: 5px 0 0 5px;
+    color: #fff;
+    outline: none;
+}
+
+.newsletter button {
+    background-color: #6c5ce7;
+    color: white;
+    border: none;
+    padding: 0.8rem 1.2rem;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.newsletter button:hover {
+    background-color: #5a4fd8;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 1.5rem;
+    border-top: 1px solid #2a2a3e;
+    color: #b0b0d0;
+    font-size: 0.9rem;
+}
+
+.footer-bottom p {
+    margin-bottom: 0.5rem;
+}
+
+/* Responsive Design */
+@media (max-width: 900px) {
+    .anime-card {
+        flex-direction: column;
+    }
+    
+    .anime-poster {
+        flex: none;
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+    
+    .main-title {
+        font-size: 2.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-container {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .nav-menu {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+    
+    .search-box {
+        width: 100%;
+        max-width: 300px;
+    }
+    
+    .main-title {
+        font-size: 1.8rem;
+    }
+    
+    .anime-stats {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .recommendation-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.poster-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.loading-content {
+  /* 1. Reset the container to take the FULL screen */
+  position: fixed;     /* Fixed ensures it stays centered even if the page scrolls */
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  
+  /* 2. Dark Mode Background */
+  /* background-color: #343436;
+  z-index: 9999;       Makes sure it sits on top of everything else */
+
+  /* 3. The Centering Logic */
+  display: flex;
+  flex-direction: column; /* Stack vertically */
+  justify-content: center; /* Center vertically */
+  align-items: center;     /* Center horizontally */
+  
+  /* 4. Spacing */
+  gap: 30px; 
+  margin: 0;
+  padding: 0;
+}
+
+.loading-header {
+  /* 1. Typography */
+  font-family: 'Inter', 'Segoe UI', Roboto, sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  text-align: center;
+  margin: 0;
+  
+  /* 2. The Color Gradient */
+  background: linear-gradient(135deg, #ffffff 0%, #6366f1 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+
+  /* 3. Spacing & Polish */
+  letter-spacing: -0.03em;
+  filter: drop-shadow(0 4px 10px rgba(99, 102, 241, 0.2));
+
+  /* 4. The "Breathing" Animation */
+  animation: breathe 2.5s ease-in-out infinite;
+}
+
+@keyframes breathe {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(0.98);
+  }
+}
+
+/* HTML: <div class="loader"></div> */
+.loader {
+  height: 60px;
+  aspect-ratio: 1;
+  position: relative;
+}
+
+.loader::before,
+.loader::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  transform-origin: bottom;
+}
+
+.loader::after {
+  background: radial-gradient(at 75% 15%,#fffb,#0000 35%),
+    radial-gradient(at 80% 40%,#0000,#0008),
+    radial-gradient(circle  5px,#fff 94%,#0000),
+    radial-gradient(circle 10px,#000 94%,#0000),
+    linear-gradient(#F93318 0 0) top   /100% calc(50% - 5px),
+    linear-gradient(#fff    0 0) bottom/100% calc(50% - 5px)
+    #000;
+  background-repeat: no-repeat;
+  animation: l20 1s infinite cubic-bezier(0.5,120,0.5,-120);
+}
+
+.loader::before {
+  background: #ddd;
+  filter: blur(8px);
+  transform: scaleY(0.4) translate(-13px, 0px);
+}
+
+@keyframes l20 {
+ 
+  30%,70% {
+    transform: rotate(0deg)
+  }
+
+  49.99% {
+    transform: rotate(0.2deg)
+  }
+
+  50% {
+    transform: rotate(-0.2deg)
+  }
+}
+
+.history-item{
+  --bezier: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --edge-light: hsla(0, 0%, 50%, 0.8);
+  --text-light: rgba(255, 255, 255, 0.4);
+  --back-color: 240, 40%;
+
+  cursor: pointer;
+  padding: 0.7em 1em;
+  border-radius: 0.5em;
+  min-height: 1.4em;
+  min-width: 2em;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+
+  font-size: 18px;
+  letter-spacing: 0.05em;
+  line-height: 1;
+  font-weight: bold;
+
+  background: linear-gradient(
+    140deg,
+    hsla(var(--back-color), 50%, 1) min(2em, 20%),
+    hsla(var(--back-color), 50%, 0.6) min(8em, 100%)
+  );
+  color: hsla(0, 0%, 90%);
+  border: 0;
+  box-shadow: inset 0.4px 1px 4px var(--edge-light);
+
+  transition: all 0.1s var(--bezier);
+}
+
+.history-item:hover {
+  --edge-light: hsla(0, 0%, 50%, 1);
+  text-shadow: 0px 0px 10px var(--text-light);
+  box-shadow: inset 0.4px 1px 4px var(--edge-light),
+    2px 4px 8px hsla(0, 0%, 0%, 0.295);
+  transform: scale(1.02);
+}
+
+.history-item:active {
+  --text-light: rgba(255, 255, 255, 1);
+
+  background: linear-gradient(
+    140deg,
+    hsla(var(--back-color), 50%, 1) min(2em, 20%),
+    hsla(var(--back-color), 50%, 0.6) min(8em, 100%)
+  );
+  box-shadow: inset 0.4px 1px 8px var(--edge-light),
+    0px 0px 8px hsla(var(--back-color), 50%, 0.6);
+  text-shadow: 0px 0px 20px var(--text-light);
+  color: hsla(0, 0%, 100%, 1);
+  letter-spacing: 0.1em;
+  transform: scale(1);
+}
+
